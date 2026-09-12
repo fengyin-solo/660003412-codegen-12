@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { COGNATE_SETS, LANGUAGE_FAMILIES, buildGraph } from '../mock/data'
-export { LANGUAGE_FAMILIES, COGNATE_SETS }
+import { COGNATE_SETS, LANGUAGE_FAMILIES, LOANWORD_PATHS, buildGraph } from '../mock/data'
+export { LANGUAGE_FAMILIES, COGNATE_SETS, LOANWORD_PATHS }
 
 export const useEtymologyStore = defineStore('etymology', () => {
   const graph = ref(buildGraph())
@@ -18,5 +18,12 @@ export const useEtymologyStore = defineStore('etymology', () => {
     })
   )
 
-  return { graph, selectedNode, searchQuery, selectedFamily, filteredCognates }
+  // 借词传播专题
+  const selectedLoanwordId = ref<string | null>(null)
+  const loanwordFamily = ref('all')
+  const filteredLoanwords = computed(() =>
+    LOANWORD_PATHS.filter(l => loanwordFamily.value === 'all' || l.sourceFamily === loanwordFamily.value)
+  )
+
+  return { graph, selectedNode, searchQuery, selectedFamily, filteredCognates, selectedLoanwordId, loanwordFamily, filteredLoanwords }
 })

@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-slate-900 text-slate-200">
     <header class="border-b border-slate-700 px-6 py-4">
       <h1 class="text-2xl font-bold text-cyan-400">语言词源图谱与多语系演化追踪</h1>
-      <p class="text-sm text-slate-500 mt-1">D3.js力导向图 · 印欧语系演化 · 同源词对照 · 500+词根</p>
+      <p class="text-sm text-slate-500 mt-1">D3.js力导向图 · 印欧语系演化 · 同源词对照 · 借词传播路径 · 500+词根</p>
     </header>
     <div class="p-4 space-y-4">
       <div class="grid lg:grid-cols-3 gap-4">
@@ -80,6 +80,7 @@
           </table>
         </div>
       </div>
+      <LoanwordSection />
     </div>
   </div>
 </template>
@@ -88,6 +89,7 @@
 import { ref, onMounted } from 'vue'
 import * as d3 from 'd3'
 import { useEtymologyStore, LANGUAGE_FAMILIES } from './store/etymology'
+import LoanwordSection from './components/LoanwordSection.vue'
 
 const store = useEtymologyStore()
 const svgRef = ref<SVGSVGElement | null>(null)

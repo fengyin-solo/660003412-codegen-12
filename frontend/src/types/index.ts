@@ -15,3 +15,10 @@ export interface CognateSet {
 export interface LanguageFamily {
   id: string; name: string; color: string; languages: string[]; era: string
 }
+export interface LoanwordPath {
+  id: string; word: string; sourceWord: string; meaning: string
+  sourceLang: string; sourceFamily: string
+  targetLang: string; targetFamily: string
+  period: string; year: number
+  route: string[]; note?: string
+}
